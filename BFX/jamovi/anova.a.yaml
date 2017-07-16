@@ -1,0 +1,48 @@
+---
+name:  anova
+title: Bayesian ANOVA
+menuGroup: BFX
+version: '1.0.0'
+jas: '1.0'
+
+options:
+    - name: data
+      type: Data
+
+    - name: nParamIters
+      title: MCMC Iterations
+      type: Integer
+      min: 1
+      default: 10000
+
+    - name: dep
+      title: Dependent Variable
+      type: Variable
+
+    - name: fullFactors
+      title: Full Model Factors
+      type: Variables
+
+    - name: nullFactors
+      title: Null Model Factors
+      type: Variables
+
+    - name: nullRow
+      title: Null row number
+      type: Integer
+      default: -1
+      hidden: true
+
+    - name: paramRow
+      title: Parameter row number
+      type: Integer
+      default: -1
+      hidden: true
+
+    - name: sort
+      title: Row sort
+      type: Sort
+      default:
+      hidden: true
+      passive: true
+...

@@ -1,0 +1,37 @@
+title: Bayesian linear regression
+name: regression
+jus: '2.0'
+stage: 0
+compilerMode: aggressive
+children:
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: nParamIters
+        format: number
+        inputPattern: '[0-9]+'
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: CheckBox
+        name: showAIC
+      - type: CheckBox
+        name: showBIC
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Dependent Variable
+        children:
+          - type: VariablesListBox
+            name: dep
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Predictors
+        children:
+          - type: VariablesListBox
+            name: predictors
+            isTarget: true

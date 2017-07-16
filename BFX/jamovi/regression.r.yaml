@@ -1,0 +1,72 @@
+---
+name:  regression
+title: Bayesian linear regression
+jrs:   "1.1"
+
+items:
+    - name:  models
+      title: Models
+      type:  Table
+      rowSelect: (nullRow)
+      sortSelect: (selSort)
+      columns:
+        - name: model
+          title: ''
+          type: text
+          content: ($key)
+        - name: p
+          title: '# predictors'
+          type: integer
+          sortable: true
+        - name: R2
+          title: 'R²'
+          type: number
+          sortable: true
+        - name: bf
+          title: 'BF'
+          type: number
+          sortable: true
+        - name: aic
+          title: 'ΔAIC'
+          type: number
+          sortable: true
+          visible: (showAIC)
+        - name: bic
+          title: 'ΔBIC'
+          type: number
+          sortable: true
+          visible: (showBIC)
+    - name: state
+      type: State
+      clearWith:
+        - dep
+        - predictors
+    - name: estimateState
+      type: State
+      clearWith:
+        - dep
+        - predictors
+    - name:  param
+      title: Parameter estimates
+      type:  Table
+      rowSelect: (paramRow) 
+      columns:
+        - name: param
+          title: Posterior parameter estimates
+          type: text
+        - name: mean
+          title: 'Mean'
+          type: number
+        - name: sd
+          title: 'SD'
+          type: number
+    - name: postPlot
+      title: Posterior distribution
+      type: Image
+      width:  400
+      height: 300
+      renderFun: .postPlot
+    - name: htmlTest
+      title: HTML test
+      type: Html
+...

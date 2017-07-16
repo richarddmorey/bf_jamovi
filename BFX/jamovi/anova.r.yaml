@@ -1,0 +1,43 @@
+---
+name:  anova
+title: Bayesian ANOVA
+jrs:   "1.1"
+
+items:
+    - name:  anova
+      title: Bayesian ANOVA
+      type:  Table
+      rowSelect: (nullRow)
+      sortSelect: (sort)
+      columns:
+        - name: model
+          title: ''
+          type: text
+          sortable: true
+          content: ($key)
+        - name: bf
+          title: 'BF'
+          type: number
+          sortable: true
+        - name: err
+          title: Error
+          type: number
+          format: pc
+    - name: state
+      type: State
+      clearWith:
+        - dep
+        - fullFactors
+        - nullFactors
+    - name:  param
+      title: Parameter estimates
+      type:  Table
+      rowSelect: (paramRow)
+      columns:
+        - name: param
+          title: Parameter
+          type: text
+        - name: mean
+          title: 'Mean'
+          type: number
+...

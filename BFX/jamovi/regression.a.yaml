@@ -1,0 +1,55 @@
+---
+name:  regression
+title: Bayesian linear regression
+menuGroup: BFX
+version: '1.0.0'
+jas: '1.0'
+
+options:
+    - name: data
+      type: Data
+
+    - name: nParamIters
+      title: MCMC Iterations
+      type: Integer
+      min: 1
+      default: 10000
+
+    - name: showAIC
+      title: 'Show AIC?'
+      type: Bool
+      default: true
+
+    - name: showBIC
+      title: 'Show BIC?'
+      type: Bool
+      default: true
+
+    - name: dep
+      title: Dependent Variable
+      type: Variable
+
+    - name: predictors
+      title: Predictors
+      type: Variables
+
+    - name: nullRow
+      title: Null row number
+      type: Integer
+      default: -1
+      hidden: true
+
+    - name: paramRow
+      title: Parameter row number
+      type: Integer
+      default: -1
+      hidden: true
+
+    - name: selSort
+      title: Row sort
+      type: Sort
+      default:
+      hidden: true
+      passive: true
+
+...

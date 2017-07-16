@@ -1,0 +1,8 @@
+exportPattern("^[[:alpha:]]+")
+
+
+
+S3method(knit_print, knitContent)
+
+
+importFrom(knitr,knit_print)

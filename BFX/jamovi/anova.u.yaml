@@ -1,0 +1,61 @@
+title: Bayesian ANOVA
+name: anova
+jus: '2.0'
+stage: 0
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        children:
+          - type: VariablesListBox
+            name: dep
+            label: Dependent Variable
+            maxItemCount: 1
+            showColumnHeaders: false
+            fullRowSelect: true
+            columns:
+              - name: column1
+                label: ''
+                stretchFactor: 1
+                template:
+                  type: VariableLabel
+            isTarget: true
+      - type: TargetLayoutBox
+        children:
+          - type: VariablesListBox
+            name: fullFactors
+            label: Full Model Factors
+            showColumnHeaders: false
+            fullRowSelect: true
+            columns:
+              - name: column1
+                label: ''
+                stretchFactor: 1
+                template:
+                  type: VariableLabel
+            isTarget: true
+      - type: TargetLayoutBox
+        children:
+          - type: VariablesListBox
+            name: nullFactors
+            label: Null Model Factors
+            showColumnHeaders: false
+            fullRowSelect: true
+            height: small
+            columns:
+              - name: column1
+                label: ''
+                stretchFactor: 1
+                template:
+                  type: VariableLabel
+            isTarget: true
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: nParamIters
+        format: number
+        inputPattern: '[0-9]+'
+compilerMode: tame
