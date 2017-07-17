@@ -153,7 +153,10 @@ regressionResults <- R6::R6Class(
             private$..htmlTest <- jmvcore::Html$new(
                 options=options,
                 name="htmlTest",
-                title="HTML test")
+                title="HTML test",
+                clearWith=list(
+                    "dep",
+                    "predictors"))
             self$add(private$..models)
             self$add(private$..state)
             self$add(private$..estimateState)

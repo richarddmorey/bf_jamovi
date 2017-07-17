@@ -15,37 +15,13 @@ regressionClass <- R6::R6Class(
             param <- self$results$param
             html <- self$results$htmlTest
 
-            
-            #fn <- system.file("rmd", "test.Rmd", package = self$package)
-            #outdir <- tempdir()
-            #outfn <- tempfile(tmpdir = outdir)
-
-            #env <- knitr::knit_global()
-            #env$CairoPNG = Cairo::CairoPNG
-
-            #Sys.setenv("RSTUDIO_PANDOC" = "/Applications/jamovi.app/Contents/MacOS/pandoc")
-                       
-            #rmarkdown::render(fn, output_format = "html_fragment",
-            #    output_dir = outdir, output_file = outfn, intermediates_dir = outdir,
-            #    run_pandoc = TRUE)
-
-            #tmp <- c(readLines(outfn),
-            #    "<script>
-            #        MathJax.Hub.Queue(['Typeset',MathJax.Hub]);
-            #    </script>")
-
-            #tmp <- knitContent(paste(tmp, sep="\n"))
-
-
-            #html$content <- tmp
-
 
             table$addRow(rowKey=character(), values=list(model='Intercept only'))
 
-            if (length(pred) == 0)
-                return()
-
             npred <- length(pred)
+
+            if (npred == 0)
+                return()
 
             models <- lapply(seq_len(npred), function(e){ 
                 cmb <- combn(pred, e)
@@ -63,6 +39,7 @@ regressionClass <- R6::R6Class(
                 model <- paste(niceTerms, collapse=' + ')
                 table$addRow(rowKey=terms, values=list(model=model))
             }
+
 
             selected <- table$rowSelected
             if(selected > table$rowCount) selected <- 0
@@ -87,12 +64,16 @@ regressionClass <- R6::R6Class(
 
             dep <- self$options$dep
             pred <- self$options$predictors
+            html <- self$results$htmlTest
 
-            if (is.null(dep))
+            if (is.null(dep)){
+                html$content <- ""
                 return()
-            if (length(pred) == 0)
+            }
+            if (length(pred) == 0){
+                html$content <- ""
                 return()
-
+            }
             table <- self$results$models
 
             selected <- table$rowSelected
@@ -170,6 +151,26 @@ regressionClass <- R6::R6Class(
                 
                 image$setState(plotData)
 
+            }
+
+            if(table$rowCount<2) {
+                html$content <- ""
+            }else if( html$isNotFilled() ) {
+                
+                rs = sample.int(table$rowCount, 2)
+                bfs_q = c(paste(table$rowKeys[[rs[1]]], collapse = " + "),
+                    paste(table$rowKeys[[rs[2]]], collapse = " + "))
+                bfs_q[rs == 1] = "the intercept-only model"
+                bf_q = state$bfs[[rs[1]]][["bf"]] / state$bfs[[rs[2]]][["bf"]]
+                if(bf_q < 1){
+                    bfs_q = rev(bfs_q)
+                    bf_q = 1/bf_q
+                }
+                
+                if(length(bf_q)>0) {
+                    bf_q = as.character(bf_q)
+                    html$content <- BFX::get_rmd("test.Rmd")
+                }
             }
 
             private$.populate(state, selected)

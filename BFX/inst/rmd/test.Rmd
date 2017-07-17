@@ -7,24 +7,13 @@ output:
     fig_height: 5
 ---
 
+### Question 1
 
-This is a test.
+What is the Bayes factor of <span class = "bfx-bfmodelname">`r bfs_q[1]`</span> against <span class = "bfx-bfmodelname">`r bfs_q[2]`</span>? 
 
-* Point 1
-* Point 2
-
-### Header
-
-\[
-y = ax + b
-\]
-
-`r 6+4`
-
-```{r}
-a = 5
-a^2
-```
-
-
-
+<div class = "bfx-question">
+  <div class = "bfx-answer">`r bf_q`</div>
+  <input type="text" class="bfx-response" onkeydown = "if (event.keyCode == 13) this.parentElement.querySelector('.bfx-submit').click()" />
+  <input type="submit" value="Submit" class="bfx-submit" onclick = "check_answer(this.parentElement, .5)"><br/>
+  <div class = "bfx-feedback"></div>
+</div>

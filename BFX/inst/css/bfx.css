@@ -1,3 +1,12 @@
-.bfxtest {
+.bfx-feedback {
 	color: red;
+}
+
+.bfx-answer {
+	visibility: hidden;
+}
+
+.bfx-bfmodelname {
+	color: blue;
+	font-weight: bold;
 }

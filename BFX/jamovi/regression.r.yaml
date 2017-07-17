@@ -69,4 +69,7 @@ items:
     - name: htmlTest
       title: HTML test
       type: Html
+      clearWith:
+        - dep
+        - predictors
 ...
