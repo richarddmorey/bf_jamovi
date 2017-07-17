@@ -1,0 +1,30 @@
+---
+title: "temp"
+output: 
+  html_fragment:
+    dev: CairoPNG
+    fig_width: 6
+    fig_height: 5
+---
+
+
+This is a test.
+
+* Point 1
+* Point 2
+
+### Header
+
+\[
+y = ax + b
+\]
+
+`r 6+4`
+
+```{r}
+a = 5
+a^2
+```
+
+
+

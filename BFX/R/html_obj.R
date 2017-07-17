@@ -5,13 +5,20 @@ knitContent <- function(content){
 }
 
 knit_print.knitContent = function(x, ...) {
-    res <- paste(c("knitContent:", x), collapse = "\n")
-	dep <- htmltools::htmlDependency(
+    res <- paste(x, collapse = "\n")
+	depBFX <- htmltools::htmlDependency(
     	name = "bfx",
     	version = "0.1",
     	src = system.file(package = "BFX"),
-    	stylesheet = "css/bfx.css"
+    	stylesheet = c("css/bfx.css", "css/vignette.css"),
+        script = c("js/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
   	)
-	res <- htmltools::attachDependencies(res, dep)
+    depRmd <- htmltools::htmlDependency(
+        name = "rmd",
+        version = "0.1",
+        src = system.file(package = "rmarkdown"),
+        stylesheet = c("rmarkdown/templates/html_vignette/resources/vignette.css")
+    )
+	res <- htmltools::attachDependencies(res, list(depBFX, depRmd))
 	knit_print(htmltools::browsable(res), ... )
 }

@@ -15,10 +15,29 @@ regressionClass <- R6::R6Class(
             param <- self$results$param
             html <- self$results$htmlTest
 
-            tmp <- knitContent("<span class = 'bfxtest'>Hi.</span>")
-            print(knit_print(tmp))
+            
+            #fn <- system.file("rmd", "test.Rmd", package = self$package)
+            #outdir <- tempdir()
+            #outfn <- tempfile(tmpdir = outdir)
 
-            html$content <- tmp
+            #env <- knitr::knit_global()
+            #env$CairoPNG = Cairo::CairoPNG
+
+            #Sys.setenv("RSTUDIO_PANDOC" = "/Applications/jamovi.app/Contents/MacOS/pandoc")
+                       
+            #rmarkdown::render(fn, output_format = "html_fragment",
+            #    output_dir = outdir, output_file = outfn, intermediates_dir = outdir,
+            #    run_pandoc = TRUE)
+
+            #tmp <- c(readLines(outfn),
+            #    "<script>
+            #        MathJax.Hub.Queue(['Typeset',MathJax.Hub]);
+            #    </script>")
+
+            #tmp <- knitContent(paste(tmp, sep="\n"))
+
+
+            #html$content <- tmp
 
 
             table$addRow(rowKey=character(), values=list(model='Intercept only'))
